@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Easy Transition'),
     );
   }
 }
@@ -31,40 +31,68 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.red,
+        // backgroundColor: Colors.red,
         appBar: AppBar(
           title: Text(widget.title),
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Center(
-              child: EasyTransition.fade(
-                child: Text('normal'),
-                pageToPush: SecondPage(),
-              ),
+            EasyTransition(
+              child: Card(
+                  child: Container(
+                height: 150,
+                child: Center(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('default scale animation'),
+                      Icon(Icons.person)
+                    ],
+                  ),
+                ),
+              )),
+              pageToPush: SecondPage(),
+              transitionDurationMilliseconds: 400,
+              transitionAlignment: Alignment.center,
+              curve: Curves.decelerate,
             ),
-            Center(
-              child: EasyTransition(
-                child: Icon(Icons.ac_unit),
-                pageToPush: SecondPage(),
-                transitionAlignment: Alignment.center,
-                curve: Curves.decelerate,
+            EasyTransition.fadePushReplacement(
+              child: Card(
+                child: Container(
+                  height: 150,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text('fadePushReplacement fade animation'),
+                      Icon(Icons.phone_android)
+                    ],
+                  ),
+                ),
               ),
+              pageToPush: SecondPage(),
             ),
-            Center(
-              child: EasyTransition.fadePushReplacement(
-                child: Icon(Icons.ac_unit),
-                pageToPush: SecondPage(),
+            EasyTransition(
+              child: Card(
+                child: Container(
+                  height: 150,
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text('default scale animation'),
+                        Icon(Icons.access_alarms)
+                      ],
+                    ),
+                  ),
+                ),
               ),
+              pageToPush: SecondPage(),
+              transitionDurationMilliseconds: 400,
+              transitionAlignment: Alignment.topLeft,
+              curve: Curves.easeIn,
+              reverseCurve: Curves.bounceInOut,
             ),
-            // Center(
-            //   child: EasyTransition.custom(
-            //     child: Text('custom'),
-            //     pageToPush: SecondPage(),
-            //     customTransition: EasyScaleTransition(SecondPage()),
-            //   ),
-            // ),
           ],
         ));
   }
@@ -78,7 +106,7 @@ class SecondPage extends StatelessWidget {
       appBar: AppBar(
         brightness: Brightness.dark,
         centerTitle: true,
-        title: Text('Fade Transition'),
+        title: Text('Second Page'),
       ),
     );
   }
