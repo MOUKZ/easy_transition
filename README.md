@@ -13,10 +13,6 @@ It provieds scale and fade transition.
 
 [GitHub](https://github.com/MOUKZ) [LinkedIn](https://www.linkedin.com/in/omar-mouki-15988b130/)
 
-# Chat UI Package
-[![Pub]](https://pub.dev/packages/easy_transition)
-
-
 <!-- ## Screenshots
 
 <img src="https://raw.githubusercontent.com/MOUKZ/chat_package/main/screenShots/1.jpeg" height="500em"><img src="https://raw.githubusercontent.com/MOUKZ/chat_package/main/screenShots/2.jpeg" height="500em">
