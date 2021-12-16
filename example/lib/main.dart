@@ -52,6 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 curve: Curves.decelerate,
               ),
             ),
+            Center(
+              child: EasyTransition.fadePushReplacement(
+                child: Icon(Icons.ac_unit),
+                pageToPush: SecondPage(),
+              ),
+            ),
             // Center(
             //   child: EasyTransition.custom(
             //     child: Text('custom'),
