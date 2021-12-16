@@ -84,6 +84,14 @@ this will create a fade transitions.
   Curve? reverseCurve;
 
 ```
+
+## Demo
+
+<img src="https://raw.githubusercontent.com/MOUKZ/chat_package/demo.gif" width="340" height="640" title="Demo">
+
+
+
+
 ## Found this project useful?
 
 If you found this project useful, then please consider giving it a ⭐️ on Github and why dont you share it with your friends.
