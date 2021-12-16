@@ -38,6 +38,9 @@ class EasyTransition extends StatefulWidget {
   // req for custom
   // PageRouteBuilder? customTransition;
 
+  /// to disable the transition
+  bool isDisabled = false;
+
   int _type = 0;
 
   bool? newRoute;
@@ -54,6 +57,7 @@ class EasyTransition extends StatefulWidget {
     this.reverseTransitionDurationMilliseconds,
     this.transitionDurationMilliseconds,
     this.transitionAlignment,
+    this.isDisabled = false,
   }) {
     _type = 0;
     _navigationType = NavigationType.Push;
@@ -69,6 +73,7 @@ class EasyTransition extends StatefulWidget {
     this.reverseTransitionDurationMilliseconds,
     this.transitionDurationMilliseconds,
     this.transitionAlignment,
+    this.isDisabled = false,
   }) {
     _type = 0;
 
@@ -86,6 +91,7 @@ class EasyTransition extends StatefulWidget {
     this.transitionDurationMilliseconds,
     this.transitionAlignment,
     this.newRoute = false,
+    this.isDisabled = false,
   }) {
     _type = 0;
 
@@ -94,15 +100,23 @@ class EasyTransition extends StatefulWidget {
 
   /// the default constructor
   /// will push a fade transition
-  EasyTransition.fade({required this.child, required this.pageToPush}) {
+  EasyTransition.fade({
+    required this.child,
+    required this.pageToPush,
+    this.isDisabled = false,
+  }) {
     _type = 1;
     _navigationType = NavigationType.Push;
   }
 
   /// the default constructor
   /// will PushReplacement a fade transition
-  EasyTransition.fadePushReplacement(
-      {required this.child, required this.pageToPush, this.newRoute = false}) {
+  EasyTransition.fadePushReplacement({
+    required this.child,
+    required this.pageToPush,
+    this.newRoute = false,
+    this.isDisabled = false,
+  }) {
     _type = 1;
 
     _navigationType = NavigationType.PushReplacement;
@@ -110,8 +124,12 @@ class EasyTransition extends StatefulWidget {
 
   /// the default constructor
   /// will PushAndRemoveUntil a fade transition
-  EasyTransition.fadePushAndRemoveUntil(
-      {required this.child, required this.pageToPush, this.newRoute = false}) {
+  EasyTransition.fadePushAndRemoveUntil({
+    required this.child,
+    required this.pageToPush,
+    this.newRoute = false,
+    this.isDisabled = false,
+  }) {
     _type = 1;
 
     _navigationType = NavigationType.PushAndRemoveUntil;
@@ -121,7 +139,11 @@ class EasyTransition extends StatefulWidget {
   // EasyTransition.custom(
   //     {required this.customTransition,
   //     required this.child,
-  //     required this.pageToPush}) {
+  //     required this.pageToPush,
+  //     this.isDisabled= false,
+
+  //
+  //}) {
   //   _navigationType = NavigationType.Push;
   //   _type = 2;
   // }
@@ -135,39 +157,41 @@ class _EasyTransitionState extends State<EasyTransition> {
   Widget build(BuildContext context) {
     return InkWell(
       child: widget.child,
-      onTap: () async {
-        /// verify the transition type with it is fade or scale
-        switch (widget._type) {
+      onTap: widget.isDisabled
+          ? null
+          : () async {
+              /// verify the transition type with it is fade or scale
+              switch (widget._type) {
 
-          /// 0 is the default scale transition
-          case 0:
-            nav(
-                context,
-                widget._navigationType,
-                EasyScaleTransition(widget.pageToPush,
-                    curve: widget.curve,
-                    reverseCurve: widget.reverseCurve,
-                    reverseTransitionDurationMilliseconds:
-                        widget.reverseTransitionDurationMilliseconds,
-                    transitionDurationMilliseconds:
-                        widget.transitionDurationMilliseconds,
-                    transitionAlignment: widget.transitionAlignment));
+                /// 0 is the default scale transition
+                case 0:
+                  nav(
+                      context,
+                      widget._navigationType,
+                      EasyScaleTransition(widget.pageToPush,
+                          curve: widget.curve,
+                          reverseCurve: widget.reverseCurve,
+                          reverseTransitionDurationMilliseconds:
+                              widget.reverseTransitionDurationMilliseconds,
+                          transitionDurationMilliseconds:
+                              widget.transitionDurationMilliseconds,
+                          transitionAlignment: widget.transitionAlignment));
 
-            break;
+                  break;
 
-          /// 1 for the fade transition
-          case 1:
-            nav(context, widget._navigationType,
-                EasyFadeTransition(widget.pageToPush));
+                /// 1 for the fade transition
+                case 1:
+                  nav(context, widget._navigationType,
+                      EasyFadeTransition(widget.pageToPush));
 
-            break;
+                  break;
 
-          // case 2:
-          //   nav(context, widget._navigationType, widget.customTransition!);
-          //   break;
-          default:
-        }
-      },
+                // case 2:
+                //   nav(context, widget._navigationType, widget.customTransition!);
+                //   break;
+                default:
+              }
+            },
     );
   }
 
