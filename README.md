@@ -87,7 +87,7 @@ this will create a fade transitions.
 
 ## Demo
 
-<img src="https://raw.githubusercontent.com/MOUKZ/easy_transition/demo.gif" width="340" height="640" title="Demo">
+<img src="https://github.com/MOUKZ/easy_transition/blob/main/demo.gif" width="340" height="640" title="Demo">
 
 
 
