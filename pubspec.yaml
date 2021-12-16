@@ -1,7 +1,7 @@
 name: easy_transition
 description: flutter package for animated navigation and transition in both scal and fade transition, supporting all curves in sacle transition
 version: 0.0.1
-homepage:
+homepage: https://github.com/MOUKZ/easy_transition
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
